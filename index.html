@@ -627,11 +627,7 @@
     18: 'wide',
   };
 
-  const openedSet = new Set(JSON.parse(localStorage.getItem('spring-advent-v1') || '[]'));
-
-  function saveOpened() {
-    localStorage.setItem('spring-advent-v1', JSON.stringify([...openedSet]));
-  }
+const openedSet = new Set(); // Starts fresh every reload
 
   function updateProgress() {
     const n = openedSet.size;
@@ -663,8 +659,7 @@
   function openBox(num, boxEl) {
     const wasOpened = openedSet.has(num);
     openedSet.add(num);
-    saveOpened();
-
+   
     if (!wasOpened) {
       boxEl.classList.add('opened');
       const check = document.createElement('div');
